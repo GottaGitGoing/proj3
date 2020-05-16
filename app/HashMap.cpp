@@ -47,27 +47,48 @@ void HashMap::add(const std::string& key, const std::string& value)
     // unsigned int hash_val = hashFunction(key);
     // unsigned int hash_bucket = hash_val % cap;
     unsigned int hash_bucket = get_hash(key, cap);
-    std::cout << key << " Hash value is " << hash_bucket << std::endl;
+    // std::cout << key << " Hash value is " << hash_bucket << std::endl;
     // std::cout << hash_val << "   " << hash_bucket <<std::endl;
     if (contains(key) == false)
     {
-    // Node* ll = buckets[hash_bucket];
+        Node* new_node = new Node{key,value,nullptr};
+        if (buckets[hash_bucket] == nullptr)
+        {
+            buckets[hash_bucket] = new_node;
+            sz++;
+            
 
-    Node* new_node = new Node{key,value,nullptr};
-    buckets[hash_bucket] = new_node;
-    sz++;
+        }
+        else
+        {
+            // Node* head = buckets[hash_bucket]; 
+            Node* ll = buckets[hash_bucket];
+            while (ll->next!=nullptr)
+            {
+                // head = ll;
+                ll = ll->next;
+                
+            }
+            // Node* new_node = new Node{key,value,nullptr};
+            ll->next = new_node;
+            // head->next = new_node;
+            // buckets[hash_bucket] = ll;
+            sz++;
+         
+        } 
     }
+    
 }
 
 
-// bool HashMap::remove(const std::string& key)
-// {
-//     if (contains(key) == true)
-//     {
-
-//     }
-//     return false;
-// }
+bool HashMap::remove(const std::string& key)
+{
+    if (contains(key) == true)
+    {
+        
+    }
+    return false;
+}
 
 bool HashMap::contains(const std::string& key) const
 {
@@ -79,7 +100,6 @@ bool HashMap::contains(const std::string& key) const
     Node* ll = buckets[hash_bucket]; // buckets is **, an element of bucket is *
     while (ll != nullptr)
     {
-
         if ((*ll).key == key)
         {
             return true;
@@ -100,10 +120,16 @@ std::string HashMap::value(const std::string& key) const
         Node * ll = buckets[hash_bucket];
         while (ll != nullptr)
         {
+            // std::cout<< ll->value << std::endl;
             if ((*ll).key == key )
             {
                 return (*ll).value;
             }
+            else
+            {
+                ll = ll->next;
+            }
+            
         }
     }
     return "";

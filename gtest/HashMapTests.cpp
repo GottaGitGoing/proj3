@@ -55,12 +55,11 @@ TEST(HashMapTests, containKeyAfterAddingIt)
    ASSERT_TRUE(hm.contains("Bool"));
    ASSERT_TRUE(hm.contains("dj"));
    ASSERT_TRUE(hm.contains("daft"));
-   std::cout << "testing value " << std::endl;
    ASSERT_EQ("trues", hm.value("Bool"));
    ASSERT_EQ("khaled", hm.value("dj"));
    ASSERT_EQ("punk", hm.value("daft"));
    ASSERT_EQ("", hm.value("NON_EXISTENT_KEY2"));
-   // ASSERT_EQ(6,hm.size());
+   ASSERT_EQ(6,hm.size());
 
 }
 
