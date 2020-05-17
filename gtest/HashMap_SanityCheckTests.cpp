@@ -57,25 +57,25 @@
 // }
 
 
-// //TEST(HashMap_SanityChecks, canConstructWithLambdaExpression)
-// //{
-// //    HashMap hm1{[](const std::string& s) { return 0; }};
-// //}
+//TEST(HashMap_SanityChecks, canConstructWithLambdaExpression)
+//{
+//    HashMap hm1{[](const std::string& s) { return 0; }};
+//}
 
 
-// //namespace
-// //{
-// //    unsigned int someHashFunction(const std::string& s)
-// //    {
-// //        return 19;
-// //    }
-// //}
+namespace
+{
+   unsigned int someHashFunction(const std::string& s)
+   {
+       return 19;
+   }
+}
 
 
-// //TEST(HashMap_SanityChecks, canConstructWithFunction)
-// //{
-// //    HashMap hm1{someHashFunction};
-// //}
+TEST(HashMap_SanityChecks, canConstructWithFunction)
+{
+   HashMap hm1{someHashFunction};
+}
 
 
 // //namespace

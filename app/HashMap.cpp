@@ -18,6 +18,7 @@ namespace
     }
 }
 
+
 HashMap::HashMap()
     :hashFunction{ascii_hash}, sz{0}, cap{INITIAL_BUCKET_COUNT}, buckets{new Node*[INITIAL_BUCKET_COUNT]}
 {
@@ -39,6 +40,12 @@ HashMap::HashMap(HashFunction hashFunction)
 }
 
 
+HashMap::HashMap(const HashMap& hm)
+{
+    
+}
+
+
 HashMap::~HashMap()
 {
     // delete[] buckets;
@@ -50,42 +57,63 @@ HashMap::~HashMap()
 }
 
 
-
 void HashMap::add(const std::string& key, const std::string& value)
 {
-    // unsigned int hash_val = hashFunction(key);
-    // unsigned int hash_bucket = hash_val % cap;
-    unsigned int hash_bucket = get_hash(key, cap);
-    // std::cout << key  << hash_val<< " Hash value is " << hash_bucket << std::endl;
-    // std::cout << hash_val << "   " << hash_bucket <<std::endl;
-    if (contains(key) == false)
-    {
-        Node* new_node = new Node{key,value,nullptr};
-        if (buckets[hash_bucket] == nullptr)
-        {
-            buckets[hash_bucket] = new_node;
-            sz++;
-            
+    // unsigned int hash_bucket = get_hash(key, cap);
 
-        }
-        else
+    if (contains(key) == false)
+    {        
+        std::cout << " THE LOAD FACTOR " << loadFactor() << std::endl;
+        (*this).add_node(key,value);
+
+        if (loadFactor() >0.8)
         {
-            // Node* head = buckets[hash_bucket]; 
-            Node* ll = buckets[hash_bucket];
-            while (ll->next!=nullptr)
+            unsigned int new_cap = 2*cap +1;
+            Node** new_bucket = new Node*[new_cap];
+            for (unsigned int i=0;i<new_cap;++i)
             {
-                // head = ll;
-                ll = ll->next;
+                new_bucket[i] = nullptr;
+            }
+            
+            for (unsigned int i=0; i<cap; ++i) // Go into each bucket
+            {
+                Node* ll = buckets[i];
+                while (ll != nullptr)
+                {
+                    unsigned int hash_bucket = get_hash(ll->key,new_cap);
+                    Node* new_node = new Node{ll->key,ll->value,nullptr};
+                    
+                    if (new_bucket[hash_bucket] == nullptr)
+                    {
+                        new_bucket[hash_bucket] = new_node; 
+                        
+                        
+                    }
+                    
+                    else
+                    {
+                        Node* sec_ll = new_bucket[hash_bucket];
+                        while (sec_ll->next!=nullptr)
+                        {
+                            sec_ll = sec_ll->next;    
+                        }
+                        sec_ll->next = new_node;
+                    }  
+                    ll = ll->next;
+                
+                // _______________________---------------------------__________________           
+                }
+
                 
             }
-            // Node* new_node = new Node{key,value,nullptr};
-            ll->next = new_node;
-             
-
-            // head->next = new_node;
-            // buckets[hash_bucket] = ll;
-            sz++;
-        
+            for (unsigned int i=0;i<cap;++i)
+            {
+                delete buckets[i];
+            }
+            delete[] buckets;
+            cap = new_cap;
+            buckets = new_bucket;
+                        
         }
     }
     
@@ -125,44 +153,12 @@ bool HashMap::remove(const std::string& key)
             head->next = ll->next;
             sz--;
             return true;
-        }
-        
-
-
-
-        // if (ll->key == key)
-        // {
-        //     head = ll->next;
-        //     delete ll;
-        //     return true;
-        // }
-        // if (ll->key != key && ll->next ==nullptr)
-        // {
-        //     return false;
-        // }
-
-        // while (ll != nullptr)
-        // {
-            
-        //     if (ll->key ==key)
-        //     {
-        //         head->next = ll->next;
-        //     }
-        //     else if
-        //     {
-        //         ll = ll->next
-        //         head = ll;
-        //     }
-        //     if (ll->next == nullptr)
-        //     {
-        //         return false;
-        //     }
-            
-        // }
-        
+        }       
+         
     }
     return false;
 }
+
 
 bool HashMap::contains(const std::string& key) const
 {
@@ -273,3 +269,26 @@ unsigned int HashMap::get_hash(const std::string& key, const unsigned int& capac
         unsigned int hash_bucket = hash_val % capac;
         return hash_bucket;
     }
+
+
+void HashMap::add_node(const std::string& key, const std::string& value)
+{
+        unsigned int hash_bucket = get_hash(key, cap);
+        Node* new_node = new Node{key,value,nullptr};
+        if (buckets[hash_bucket] == nullptr)
+        {
+            buckets[hash_bucket] = new_node;
+            sz++; 
+        }
+        else
+        {
+            Node* ll = buckets[hash_bucket];
+            while (ll->next!=nullptr)
+            {
+                ll = ll->next;    
+            }
+            ll->next = new_node;
+            sz++;
+        
+        }  
+}
