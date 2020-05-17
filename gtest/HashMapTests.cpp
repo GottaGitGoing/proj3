@@ -17,28 +17,77 @@
 // HashMap.)
 
 #include <gtest/gtest.h>
+#include <string>
 #include "HashMap.hpp"
 
 
-// TEST(HashMapTests, sizeOfNewlyCreatedHashMapIsZero)
-// {
-//    HashMap empty;
-//    ASSERT_EQ(0, empty.size());
-// }
+TEST(HashMapTests, sizeOfNewlyCreatedHashMapIsZero)
+{
+   HashMap empty;
+   ASSERT_EQ(0, empty.size());
+}
 
 
-// TEST(HashMapTests, emptyMapContainsNoKeys)
-// {
-//    HashMap empty;
-//    ASSERT_FALSE(empty.contains("first"));
-//    ASSERT_FALSE(empty.contains("second"));
-//    ASSERT_FALSE(empty.contains(""));
-// }
+TEST(HashMapTests, emptyMapContainsNoKeys)
+{
+   HashMap empty;
+   ASSERT_FALSE(empty.contains("first"));
+   ASSERT_FALSE(empty.contains("second"));
+   ASSERT_FALSE(empty.contains(""));
+}
 
 
-TEST(HashMapTests, containKeyAfterAddingIt)
+TEST(HashMapTests, TestingHashMapWithNoArgument)
 {
    HashMap hm;
+   hm.add("Boo", "perfect");
+   hm.add("arian", "here");
+   hm.add("was", "123");
+   ASSERT_TRUE(hm.contains("Boo"));
+   ASSERT_TRUE(hm.contains("arian"));
+   ASSERT_TRUE(hm.contains("was"));
+   ASSERT_FALSE(hm.contains("NON_EXISTENT_KEY"));
+   ASSERT_EQ(3,hm.size());  
+   hm.add("Bool", "trues");
+   hm.add("dj", "khaled");
+   hm.add("daft", "punk");
+   ASSERT_TRUE(hm.contains("Bool"));
+   ASSERT_TRUE(hm.contains("dj"));
+   ASSERT_TRUE(hm.contains("daft"));
+   ASSERT_EQ("trues", hm.value("Bool"));
+   ASSERT_EQ("khaled", hm.value("dj"));
+   ASSERT_EQ("punk", hm.value("daft"));
+   ASSERT_EQ("", hm.value("NON_EXISTENT_KEY2"));
+   ASSERT_EQ(6,hm.size());
+   hm.remove("Boo");
+   ASSERT_FALSE(hm.remove("asdf"));
+   ASSERT_FALSE(hm.contains("Boo"));
+   ASSERT_EQ(5,hm.size());
+   hm.remove("dj");
+   ASSERT_TRUE(hm.contains("Bool"));
+   ASSERT_EQ(4,hm.size());
+
+}
+
+namespace
+{
+   unsigned int SDBMHash(std::string s) {
+      unsigned int hash = 0;
+      unsigned int i = 0;
+      unsigned int len = s.length();
+
+      for (i = 0; i < len; i++)
+      {
+         hash = (s[i]) + (hash << 6) + (hash << 16) - hash;
+      }
+
+      return hash;
+   }
+}
+
+TEST(HashMapTests, TestingHashMapWITHArgument)
+{
+   HashMap hm(SDBMHash);
    hm.add("Boo", "perfect");
    hm.add("arian", "here");
    hm.add("was", "123");
@@ -69,7 +118,9 @@ TEST(HashMapTests, containKeyAfterAddingIt)
    ASSERT_TRUE(hm.contains("Bool"));
    ASSERT_EQ(4,hm.size());
 
+
 }
+
 
 // TEST(HashMapTests, TestCopyCons)
 // {

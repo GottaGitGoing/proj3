@@ -19,8 +19,6 @@ HashMap.hpp
 /home/ics45c/projects/proj3/app/HashMap.hpp
 iostream
 -
-tuple
--
 
 /home/ics45c/projects/proj3/app/HashMap.hpp
 functional
@@ -32,6 +30,8 @@ tuple
 
 /home/ics45c/projects/proj3/gtest/HashMapTests.cpp
 gtest/gtest.h
+-
+string
 -
 HashMap.hpp
 /home/ics45c/projects/proj3/gtest/HashMap.hpp

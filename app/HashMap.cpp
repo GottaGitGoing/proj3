@@ -1,7 +1,6 @@
 // HashMap.cpp
 #include "HashMap.hpp"
 #include <iostream>
-#include <tuple>
 
 
 namespace
@@ -30,6 +29,16 @@ HashMap::HashMap()
 }
 
 
+HashMap::HashMap(HashFunction hashFunction)
+    :hashFunction{hashFunction}, sz{0}, cap{INITIAL_BUCKET_COUNT}, buckets{new Node*[INITIAL_BUCKET_COUNT]}
+{
+    for (unsigned int i=0;i<cap;++i)
+    {
+        buckets[i] = nullptr;
+    }
+}
+
+
 HashMap::~HashMap()
 {
     // delete[] buckets;
@@ -47,7 +56,7 @@ void HashMap::add(const std::string& key, const std::string& value)
     // unsigned int hash_val = hashFunction(key);
     // unsigned int hash_bucket = hash_val % cap;
     unsigned int hash_bucket = get_hash(key, cap);
-    // std::cout << key << " Hash value is " << hash_bucket << std::endl;
+    // std::cout << key  << hash_val<< " Hash value is " << hash_bucket << std::endl;
     // std::cout << hash_val << "   " << hash_bucket <<std::endl;
     if (contains(key) == false)
     {
@@ -71,11 +80,13 @@ void HashMap::add(const std::string& key, const std::string& value)
             }
             // Node* new_node = new Node{key,value,nullptr};
             ll->next = new_node;
+             
+
             // head->next = new_node;
             // buckets[hash_bucket] = ll;
             sz++;
-         
-        } 
+        
+        }
     }
     
 }
@@ -85,7 +96,7 @@ bool HashMap::remove(const std::string& key)
 {
     if (contains(key) == true)
     {
-        
+
         unsigned int hash_bucket = get_hash(key,cap);
         Node* ll = buckets[hash_bucket];
         Node* head = ll;
