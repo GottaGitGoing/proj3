@@ -60,6 +60,14 @@ TEST(HashMapTests, containKeyAfterAddingIt)
    ASSERT_EQ("punk", hm.value("daft"));
    ASSERT_EQ("", hm.value("NON_EXISTENT_KEY2"));
    ASSERT_EQ(6,hm.size());
+   hm.remove("Boo");
+   ASSERT_FALSE(hm.remove("asdf"));
+   
+   ASSERT_FALSE(hm.contains("Boo"));
+   ASSERT_EQ(5,hm.size());
+   hm.remove("dj");
+   ASSERT_TRUE(hm.contains("Bool"));
+   ASSERT_EQ(4,hm.size());
 
 }
 

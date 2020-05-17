@@ -86,6 +86,69 @@ bool HashMap::remove(const std::string& key)
     if (contains(key) == true)
     {
         
+        unsigned int hash_bucket = get_hash(key,cap);
+        Node* ll = buckets[hash_bucket];
+        Node* head = ll;
+        
+        if (ll->key == key)
+        {
+            head = ll->next;
+            buckets[hash_bucket] = head;
+            sz--;
+            delete ll;
+            return true;
+        }
+        while (ll !=nullptr && ll->key !=key)
+        {
+            // while they're both not on the same value keep looping (Note they break at a null == null)
+            head = ll;
+            ll = ll->next;
+        }
+        if (ll == nullptr)
+        {
+            delete ll;
+            return false;
+        }
+        else
+        {
+            head->next = ll->next;
+            sz--;
+            return true;
+        }
+        
+
+
+
+        // if (ll->key == key)
+        // {
+        //     head = ll->next;
+        //     delete ll;
+        //     return true;
+        // }
+        // if (ll->key != key && ll->next ==nullptr)
+        // {
+        //     return false;
+        // }
+
+        // while (ll != nullptr)
+        // {
+            
+        //     if (ll->key ==key)
+        //     {
+        //         head->next = ll->next;
+        //     }
+        //     else if
+        //     {
+        //         ll = ll->next
+        //         head = ll;
+        //     }
+        //     if (ll->next == nullptr)
+        //     {
+        //         return false;
+        //     }
+            
+        // }
+        
     }
     return false;
 }
