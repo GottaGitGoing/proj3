@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/a.out.app.dir/app/HashMap.cpp.o"
+  "CMakeFiles/a.out.app.dir/app/UI.cpp.o"
   "CMakeFiles/a.out.app.dir/app/main.cpp.o"
   "bin/a.out.app.pdb"
   "bin/a.out.app"

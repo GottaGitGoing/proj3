@@ -182,6 +182,39 @@ app/HashMap.cpp.s:
 	$(MAKE) -f CMakeFiles/a.out.exp.dir/build.make CMakeFiles/a.out.exp.dir/app/HashMap.cpp.s
 .PHONY : app/HashMap.cpp.s
 
+app/UI.o: app/UI.cpp.o
+
+.PHONY : app/UI.o
+
+# target to build an object file
+app/UI.cpp.o:
+	$(MAKE) -f CMakeFiles/a.out.gtest.dir/build.make CMakeFiles/a.out.gtest.dir/app/UI.cpp.o
+	$(MAKE) -f CMakeFiles/a.out.app.dir/build.make CMakeFiles/a.out.app.dir/app/UI.cpp.o
+	$(MAKE) -f CMakeFiles/a.out.exp.dir/build.make CMakeFiles/a.out.exp.dir/app/UI.cpp.o
+.PHONY : app/UI.cpp.o
+
+app/UI.i: app/UI.cpp.i
+
+.PHONY : app/UI.i
+
+# target to preprocess a source file
+app/UI.cpp.i:
+	$(MAKE) -f CMakeFiles/a.out.gtest.dir/build.make CMakeFiles/a.out.gtest.dir/app/UI.cpp.i
+	$(MAKE) -f CMakeFiles/a.out.app.dir/build.make CMakeFiles/a.out.app.dir/app/UI.cpp.i
+	$(MAKE) -f CMakeFiles/a.out.exp.dir/build.make CMakeFiles/a.out.exp.dir/app/UI.cpp.i
+.PHONY : app/UI.cpp.i
+
+app/UI.s: app/UI.cpp.s
+
+.PHONY : app/UI.s
+
+# target to generate assembly for a file
+app/UI.cpp.s:
+	$(MAKE) -f CMakeFiles/a.out.gtest.dir/build.make CMakeFiles/a.out.gtest.dir/app/UI.cpp.s
+	$(MAKE) -f CMakeFiles/a.out.app.dir/build.make CMakeFiles/a.out.app.dir/app/UI.cpp.s
+	$(MAKE) -f CMakeFiles/a.out.exp.dir/build.make CMakeFiles/a.out.exp.dir/app/UI.cpp.s
+.PHONY : app/UI.cpp.s
+
 app/main.o: app/main.cpp.o
 
 .PHONY : app/main.o
@@ -331,6 +364,9 @@ help:
 	@echo "... app/HashMap.o"
 	@echo "... app/HashMap.i"
 	@echo "... app/HashMap.s"
+	@echo "... app/UI.o"
+	@echo "... app/UI.i"
+	@echo "... app/UI.s"
 	@echo "... app/main.o"
 	@echo "... app/main.i"
 	@echo "... app/main.s"

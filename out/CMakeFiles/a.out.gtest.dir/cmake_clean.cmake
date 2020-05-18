@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/a.out.gtest.dir/gtest/HashMap_SanityCheckTests.cpp.o"
   "CMakeFiles/a.out.gtest.dir/gtest/gtestmain.cpp.o"
   "CMakeFiles/a.out.gtest.dir/app/HashMap.cpp.o"
+  "CMakeFiles/a.out.gtest.dir/app/UI.cpp.o"
   "bin/a.out.gtest.pdb"
   "bin/a.out.gtest"
 )

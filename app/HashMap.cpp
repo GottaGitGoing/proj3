@@ -34,7 +34,7 @@ HashMap::HashMap()
     {
         buckets[i] = nullptr;
     }
-    // std::cout << " Const " << hashFunction("Boo") << std::endl; 
+    
 }
 
 
@@ -56,20 +56,51 @@ HashMap::HashMap(const HashMap& hm)
         buckets[i] = hm.buckets[i];
     }
     
+    
 }
 
 
 HashMap::~HashMap()
 {
-    // delete[] buckets;
-    for (unsigned int i=0;i<cap;++i)
-    {
+    
+    // for (unsigned int i=0; i<cap;++i)
+    // {
+    //     if (buckets[i]!= nullptr)
+    //     {
+    //         Node* head = buckets[i];
+    //         Node* current = head;
+    //         Node* ll = current;
+    //         while(ll != nullptr)
+    //         {
+    //             ll = current->next;                
+    //             delete current;
+    //             current = ll;
+    //         } 
+    //         buckets[i] = nullptr;
+    //     }
         
-        delete buckets[i];
-    }
-    delete[] buckets;
+    // }
+    // delete[] buckets;
 }
 
+
+/*
+for (unsigned int i=0; i<cap;++i)
+    {
+        if(buckets[i] != nullptr)
+        {
+            Node* head = buckets[i];
+            Node* current = head;
+            Node* ll = current;
+            while(ll != nullptr)
+            {
+                ll = current->next;
+                delete[] current;
+                current = ll;
+            } 
+        }
+    }
+*/
 
 
 HashMap& HashMap::operator=(const HashMap& hm)
@@ -84,7 +115,19 @@ HashMap& HashMap::operator=(const HashMap& hm)
         // (*this).~HashMap();
         sz = hm.sz;
         cap = hm.cap; 
-        hashFunction = hm.hashFunction;          
+        hashFunction = hm.hashFunction; 
+
+
+
+
+    
+        
+
+
+
+
+
+
         buckets = new_buckets;
     }
 
@@ -100,7 +143,7 @@ void HashMap::add(const std::string& key, const std::string& value)
 
     if (contains(key) == false)
     {        
-        // std::cout << " Hash val " << loadFactor() << std::endl;
+        
         (*this).add_node(key,value,cap);
 
         if (loadFactor() >0.8)
@@ -123,6 +166,7 @@ void HashMap::add(const std::string& key, const std::string& value)
                     
                     if (new_bucket[hash_bucket] == nullptr)
                     {
+                        
                         new_bucket[hash_bucket] = new_node; 
                         
                         
@@ -197,11 +241,8 @@ bool HashMap::remove(const std::string& key)
 
 bool HashMap::contains(const std::string& key) const
 {
-    // unsigned int hash_val = hashFunction(key);
-    // unsigned int hash_bucket = hash_val % cap;
+    
     unsigned int hash_bucket = get_hash(key, cap);
-    // std::cout << " The hash bucket func right?  " << hash_bucket << std::endl;
-    // std::cout << hash_val << "   " << hash_bucket <<std::endl;
     Node* ll = buckets[hash_bucket]; // buckets is **, an element of bucket is *
     while (ll != nullptr)
     {
@@ -225,7 +266,7 @@ std::string HashMap::value(const std::string& key) const
         Node * ll = buckets[hash_bucket];
         while (ll != nullptr)
         {
-            // std::cout<< ll->value << std::endl;
+            
             if ((*ll).key == key )
             {
                 return (*ll).value;
@@ -300,7 +341,7 @@ unsigned int HashMap::findLargestBucket() const
 unsigned int HashMap::get_hash(const std::string& key, const unsigned int& capac) const
     {
         unsigned int hash_val = hashFunction(key);
-        // std::cout << hash_val << " from name spae " << std::endl;
+        
         unsigned int hash_bucket = hash_val % capac;
         return hash_bucket;
     }
@@ -309,7 +350,7 @@ unsigned int HashMap::get_hash(const std::string& key, const unsigned int& capac
 void HashMap::add_node(const std::string& key, const std::string& value, const unsigned int& acap)
 {
         unsigned int hash_bucket = get_hash(key, acap);
-        std::cout << " Hash BUcket is " << hash_bucket << std::endl;
+        
         Node* new_node = new Node{key,value,nullptr};
         if (buckets[hash_bucket] == nullptr)
         {
@@ -325,6 +366,5 @@ void HashMap::add_node(const std::string& key, const std::string& value, const u
             }
             ll->next = new_node;
             sz++;
-        
         }  
 }
