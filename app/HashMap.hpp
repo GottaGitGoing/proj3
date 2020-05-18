@@ -25,7 +25,6 @@
 
 #include <functional>
 #include <string>
-#include <tuple>
 
 
 
@@ -140,7 +139,7 @@ public:
     // gets the hash bucket number
     unsigned int get_hash(const std::string& key, const unsigned int& capac) const ;
 
-    void add_node(const std::string& key, const std::string& value);
+    void add_node(const std::string& key, const std::string& value,const unsigned int& cap);
 
 private:
     // This structure describes the nodes that make up the linked lists in

@@ -16,6 +16,14 @@ namespace
     
     
     }
+
+    // void HashMapCopy(Node* target, Node* source, unsigned int size)
+    // {
+    //     for (unsigned int i = 0; i<size; ++i)
+    //     {
+    //         target[i] = source[i];
+    //     }
+    // }
 }
 
 
@@ -41,7 +49,12 @@ HashMap::HashMap(HashFunction hashFunction)
 
 
 HashMap::HashMap(const HashMap& hm)
+    :hashFunction{hm.hashFunction}, sz{hm.sz}, cap{hm.cap}, buckets{new Node*[hm.cap]}
 {
+    for (unsigned int i=0; i<hm.cap; ++i)
+    {
+        buckets[i] = hm.buckets[i];
+    }
     
 }
 
@@ -51,10 +64,34 @@ HashMap::~HashMap()
     // delete[] buckets;
     for (unsigned int i=0;i<cap;++i)
     {
+        
         delete buckets[i];
     }
     delete[] buckets;
 }
+
+
+
+HashMap& HashMap::operator=(const HashMap& hm)
+{
+    if (this != &hm)
+    {
+        Node** new_buckets = new Node*[hm.cap];
+        for (unsigned int i=0; i<hm.cap; ++i)
+        {
+            new_buckets[i] = hm.buckets[i];
+        }
+        // (*this).~HashMap();
+        sz = hm.sz;
+        cap = hm.cap; 
+        hashFunction = hm.hashFunction;          
+        buckets = new_buckets;
+    }
+
+    return *this;
+}
+
+
 
 
 void HashMap::add(const std::string& key, const std::string& value)
@@ -63,11 +100,12 @@ void HashMap::add(const std::string& key, const std::string& value)
 
     if (contains(key) == false)
     {        
-        std::cout << " THE LOAD FACTOR " << loadFactor() << std::endl;
-        (*this).add_node(key,value);
+        // std::cout << " Hash val " << loadFactor() << std::endl;
+        (*this).add_node(key,value,cap);
 
         if (loadFactor() >0.8)
         {
+            const unsigned int old_cap = cap;
             unsigned int new_cap = 2*cap +1;
             Node** new_bucket = new Node*[new_cap];
             for (unsigned int i=0;i<new_cap;++i)
@@ -75,7 +113,7 @@ void HashMap::add(const std::string& key, const std::string& value)
                 new_bucket[i] = nullptr;
             }
             
-            for (unsigned int i=0; i<cap; ++i) // Go into each bucket
+            for (unsigned int i=0; i<old_cap; ++i) // Go into each bucket
             {
                 Node* ll = buckets[i];
                 while (ll != nullptr)
@@ -101,10 +139,7 @@ void HashMap::add(const std::string& key, const std::string& value)
                     }  
                     ll = ll->next;
                 
-                // _______________________---------------------------__________________           
                 }
-
-                
             }
             for (unsigned int i=0;i<cap;++i)
             {
@@ -215,7 +250,7 @@ unsigned int HashMap::size() const
 unsigned int HashMap::bucketCount() const
 {
     unsigned int allocated_buckets = 0;
-    for (unsigned int i=0;i<cap;++i)
+    for (unsigned int i=0;i<this->cap;++i)
     {
         if(buckets[i] != nullptr)
         {
@@ -271,9 +306,10 @@ unsigned int HashMap::get_hash(const std::string& key, const unsigned int& capac
     }
 
 
-void HashMap::add_node(const std::string& key, const std::string& value)
+void HashMap::add_node(const std::string& key, const std::string& value, const unsigned int& acap)
 {
-        unsigned int hash_bucket = get_hash(key, cap);
+        unsigned int hash_bucket = get_hash(key, acap);
+        std::cout << " Hash BUcket is " << hash_bucket << std::endl;
         Node* new_node = new Node{key,value,nullptr};
         if (buckets[hash_bucket] == nullptr)
         {

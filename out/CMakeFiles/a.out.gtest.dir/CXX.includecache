@@ -11,8 +11,6 @@ functional
 -
 string
 -
-tuple
--
 
 /home/ics45c/projects/proj3/app/HashMap.cpp
 HashMap.hpp
@@ -24,8 +22,6 @@ iostream
 functional
 -
 string
--
-tuple
 -
 
 /home/ics45c/projects/proj3/gtest/HashMapTests.cpp
