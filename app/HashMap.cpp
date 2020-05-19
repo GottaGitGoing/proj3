@@ -20,7 +20,6 @@ namespace
 
     
 
-    
 }
 
 
@@ -69,29 +68,7 @@ HashMap::HashMap(const HashMap& hm)
             }
             
 
-            // Node* old = hm.buckets[i];
-            // if (old == nullptr)
-            // {
-            //     buckets[i] = nullptr;
-            // }       
-            // else
-            // {
-                
-            //     Node* copy = new Node{old->key,old->value,nullptr};
-            //     while (old !=nullptr)
-            //     {
-            //         // copy->next = old->next;
-            //         // old = old->next;
-                    
-            //         // copy = copy->next;
-            //     }
-            //     buckets[i] = copy;
-                
-            // }
-            
-
-
-            
+                      
         }
     
     
@@ -122,23 +99,6 @@ HashMap::~HashMap()
 }
 
 
-/*
-for (unsigned int i=0; i<cap;++i)
-    {
-        if(buckets[i] != nullptr)
-        {
-            Node* head = buckets[i];
-            Node* current = head;
-            Node* ll = current;
-            while(ll != nullptr)
-            {
-                ll = current->next;
-                delete[] current;
-                current = ll;
-            } 
-        }
-    }
-*/
 
 
 HashMap& HashMap::operator=(const HashMap& hm)
@@ -176,14 +136,13 @@ HashMap& HashMap::operator=(const HashMap& hm)
             old= old->next;
             }         
 
-// ----------
             }
         }
                 
         sz = hm.sz;
         cap = hm.cap; 
         hashFunction = hm.hashFunction; 
-        
+        delete[] buckets;
         buckets = new_buckets;
     }
 
@@ -195,7 +154,7 @@ HashMap& HashMap::operator=(const HashMap& hm)
 
 void HashMap::add(const std::string& key, const std::string& value)
 {
-    // unsigned int hash_bucket = get_hash(key, cap);
+    
 
     if (contains(key) == false)
     {        
@@ -226,6 +185,7 @@ void HashMap::add(const std::string& key, const std::string& value)
                         new_bucket[hash_bucket] = new_node; 
                         
                         
+                        
                     }
                     
                     else
@@ -236,16 +196,15 @@ void HashMap::add(const std::string& key, const std::string& value)
                             sec_ll = sec_ll->next;    
                         }
                         sec_ll->next = new_node;
+                        
                     }  
                     ll = ll->next;
-                
+                    
                 }
+                
+                
             }
-            // for (unsigned int i=0;i<cap;++i)
-            // {
-            //     delete buckets[i];
-            // }
-            // delete[] buckets;
+            
             this->~HashMap();
             cap = new_cap;
             buckets = new_bucket;

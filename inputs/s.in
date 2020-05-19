@@ -1,21 +1,13 @@
 CREATE thornton@ics.uci.edu abcdefg
-CREATE boo@thornton.com sleeping
-CREATE boo@thornton.com playing
-LOGIN thornton@ics.uci.edu abcdefg
-LOGIN thornton@ics.uci.edu defg
-LOGIN bill.gates@microsoft.com windows
-LOGIN COUNT
+CREATE assad assadorf
+CREATE fara jaka
 DEBUG ON
+BUCKET COUNT
 LOGIN COUNT
-DEBUG ON
+LOAD FACTOR
+MAX BUCKET SIZE
 DEBUG OFF
+BUCKET COUNT
 LOGIN COUNT
-REMOVE thornton@ics.uci.edu
-REMOVE thornton@ics.uci.edu
-REMOVE edge@u2.com
-LOGINS hello@hello.com hello
-LOGIN thornton@ics.uci.edu
-LOGIN
-WTF
-
-QUIT
+LOAD FACTOR
+MAX BUCKET SIZE

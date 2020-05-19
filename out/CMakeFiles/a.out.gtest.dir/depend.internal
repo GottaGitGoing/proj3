@@ -11,6 +11,7 @@ CMakeFiles/a.out.gtest.dir/gtest/HashMapTests.cpp.o
  ../app/HashMap.hpp
  /home/ics45c/projects/proj3/gtest/HashMapTests.cpp
 CMakeFiles/a.out.gtest.dir/gtest/HashMap_SanityCheckTests.cpp.o
+ ../app/HashMap.hpp
  /home/ics45c/projects/proj3/gtest/HashMap_SanityCheckTests.cpp
 CMakeFiles/a.out.gtest.dir/gtest/gtestmain.cpp.o
  /home/ics45c/projects/proj3/gtest/gtestmain.cpp
