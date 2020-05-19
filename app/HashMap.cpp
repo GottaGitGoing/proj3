@@ -20,30 +20,7 @@ namespace
 
     
 
-    // void CopyArray(HashMap::Node** source, HashMap::Node** target, unsigned int cap)
-    // {
-    //     for (unsigned int i=0;i<cap;i++)
-    //     {
-    //         Node* old = source[i];
-    //         if (old == nullptr)
-    //         {
-    //             target[i] = nullptr;
-    //         }       
-    //         else
-    //         {
-    //             Node* copy = old;
-    //             while (old!=nullptr)
-    //             {
-    //                 Node* temp = new Node*{old->key,old->value,nullptr}
-    //                 copy->next = temp;
-    //                 old = old->next;
-    //                 copy = copy->next;
-
-    //             }
-    //         }
-            
-    //     }
-    // }
+    
 }
 
 
@@ -206,7 +183,7 @@ HashMap& HashMap::operator=(const HashMap& hm)
         sz = hm.sz;
         cap = hm.cap; 
         hashFunction = hm.hashFunction; 
-
+        
         buckets = new_buckets;
     }
 
@@ -264,11 +241,12 @@ void HashMap::add(const std::string& key, const std::string& value)
                 
                 }
             }
-            for (unsigned int i=0;i<cap;++i)
-            {
-                delete buckets[i];
-            }
-            delete[] buckets;
+            // for (unsigned int i=0;i<cap;++i)
+            // {
+            //     delete buckets[i];
+            // }
+            // delete[] buckets;
+            this->~HashMap();
             cap = new_cap;
             buckets = new_bucket;
                         
@@ -445,5 +423,5 @@ void HashMap::add_node(const std::string& key, const std::string& value, const u
             }
             ll->next = new_node;
             sz++;
-        }  
+        } 
 }
