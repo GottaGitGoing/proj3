@@ -17,11 +17,31 @@ namespace
     
     }
 
-    // void HashMapCopy(Node* target, Node* source, unsigned int size)
+
+    
+
+    // void CopyArray(HashMap::Node** source, HashMap::Node** target, unsigned int cap)
     // {
-    //     for (unsigned int i = 0; i<size; ++i)
+    //     for (unsigned int i=0;i<cap;i++)
     //     {
-    //         target[i] = source[i];
+    //         Node* old = source[i];
+    //         if (old == nullptr)
+    //         {
+    //             target[i] = nullptr;
+    //         }       
+    //         else
+    //         {
+    //             Node* copy = old;
+    //             while (old!=nullptr)
+    //             {
+    //                 Node* temp = new Node*{old->key,old->value,nullptr}
+    //                 copy->next = temp;
+    //                 old = old->next;
+    //                 copy = copy->next;
+
+    //             }
+    //         }
+            
     //     }
     // }
 }
@@ -48,13 +68,43 @@ HashMap::HashMap(HashFunction hashFunction)
 }
 
 
+
 HashMap::HashMap(const HashMap& hm)
     :hashFunction{hm.hashFunction}, sz{hm.sz}, cap{hm.cap}, buckets{new Node*[hm.cap]}
 {
+
+
     for (unsigned int i=0; i<hm.cap; ++i)
-    {
-        buckets[i] = hm.buckets[i];
-    }
+        {
+            buckets[i] = hm.buckets[i];
+        }
+    // for (unsigned int i=0;i<cap;i++)
+    // {
+    //     buckets[i] = nullptr;
+    // }
+    // for (unsigned int i=0;i<hm.cap;i++)
+    //     {
+                 
+    //         Node* old = hm.buckets[i];
+    //         if (old == nullptr)
+    //         {
+    //             buckets[i] = nullptr;
+    //         }       
+    //         else
+    //         {
+                
+    //             Node* copy = new Node{old->key,old->value,nullptr};
+    //             while (old !=nullptr)
+    //             {
+                    
+    //                 copy->next = old->next;
+    //                 old = old->next;
+    //                 // copy = copy->next;
+    //             }
+                
+    //         }
+            
+    //     }
     
     
 }

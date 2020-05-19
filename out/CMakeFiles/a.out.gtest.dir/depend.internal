@@ -7,6 +7,7 @@ CMakeFiles/a.out.gtest.dir/app/HashMap.cpp.o
 CMakeFiles/a.out.gtest.dir/app/UI.cpp.o
  /home/ics45c/projects/proj3/app/UI.cpp
 CMakeFiles/a.out.gtest.dir/gtest/HashMapTests.cpp.o
+ ../app/HashMap.hpp
  /home/ics45c/projects/proj3/gtest/HashMapTests.cpp
 CMakeFiles/a.out.gtest.dir/gtest/HashMap_SanityCheckTests.cpp.o
  /home/ics45c/projects/proj3/gtest/HashMap_SanityCheckTests.cpp

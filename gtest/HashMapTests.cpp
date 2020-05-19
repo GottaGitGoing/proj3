@@ -16,9 +16,9 @@
 // // substantial amount of partial credit available if all that works is
 // // HashMap.)
 
-// #include <gtest/gtest.h>
-// #include <string>
-// #include "HashMap.hpp"
+#include <gtest/gtest.h>
+#include <string>
+#include "HashMap.hpp"
 
 
 // TEST(HashMapTests, sizeOfNewlyCreatedHashMapIsZero)
