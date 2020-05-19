@@ -4,6 +4,7 @@
 CMakeFiles/a.out.gtest.dir/app/HashMap.cpp.o: ../app/HashMap.cpp
 CMakeFiles/a.out.gtest.dir/app/HashMap.cpp.o: ../app/HashMap.hpp
 
+CMakeFiles/a.out.gtest.dir/app/UI.cpp.o: ../app/HashMap.hpp
 CMakeFiles/a.out.gtest.dir/app/UI.cpp.o: ../app/UI.cpp
 
 CMakeFiles/a.out.gtest.dir/gtest/HashMapTests.cpp.o: ../app/HashMap.hpp

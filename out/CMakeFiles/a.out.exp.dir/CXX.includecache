@@ -19,6 +19,16 @@ string
 -
 
 /home/ics45c/projects/proj3/app/UI.cpp
+HashMap.hpp
+/home/ics45c/projects/proj3/app/HashMap.hpp
+iostream
+-
+sstream
+-
+vector
+-
+string
+-
 
 /home/ics45c/projects/proj3/exp/expmain.cpp
 

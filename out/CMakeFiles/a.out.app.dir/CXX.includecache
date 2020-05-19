@@ -19,12 +19,6 @@ string
 -
 
 /home/ics45c/projects/proj3/app/UI.cpp
-
-/home/ics45c/projects/proj3/app/UI.hpp
-
-/home/ics45c/projects/proj3/app/main.cpp
-UI.hpp
-/home/ics45c/projects/proj3/app/UI.hpp
 HashMap.hpp
 /home/ics45c/projects/proj3/app/HashMap.hpp
 iostream
@@ -35,4 +29,10 @@ vector
 -
 string
 -
+
+/home/ics45c/projects/proj3/app/UI.hpp
+
+/home/ics45c/projects/proj3/app/main.cpp
+UI.hpp
+/home/ics45c/projects/proj3/app/UI.hpp
 
