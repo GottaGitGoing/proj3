@@ -168,8 +168,41 @@ HashMap& HashMap::operator=(const HashMap& hm)
 {
     if (this != &hm)
     {      
+        Node** new_buckets = new Node*[hm.cap];
+        for (int i=0;i<cap;++i)
+        {
+            new_buckets[i] = nullptr;
+        }
+
+        for (unsigned int i=0;i<cap;++i)
+        {
+            Node* old = hm.buckets[i];
+            while (old != nullptr)
+            {
+            unsigned int hash_bucket = get_hash(old->key, cap);
         
-        (*this).~HashMap();
+            Node* new_node = new Node{old->key,old->value,nullptr};
+            if (new_buckets[hash_bucket] == nullptr)
+            {
+                new_buckets[hash_bucket] = new_node;
+                // sz++; 
+            }
+            else
+            {
+                Node* ll = new_buckets[hash_bucket];
+                while (ll->next!=nullptr)
+                {
+                    ll = ll->next;    
+                }
+                ll->next = new_node;
+                // sz++;
+            old= old->next;
+            }         
+
+// ----------
+            }
+        }
+                
         sz = hm.sz;
         cap = hm.cap; 
         hashFunction = hm.hashFunction; 
