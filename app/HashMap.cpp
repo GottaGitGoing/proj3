@@ -74,37 +74,48 @@ HashMap::HashMap(const HashMap& hm)
 {
 
 
-    for (unsigned int i=0; i<hm.cap; ++i)
+    
+    for (unsigned int i=0;i<cap;i++)
+    {
+        buckets[i] = nullptr;
+    }
+    for (unsigned int i=0;i<hm.cap;i++)
         {
-            buckets[i] = hm.buckets[i];
-        }
-    // for (unsigned int i=0;i<cap;i++)
-    // {
-    //     buckets[i] = nullptr;
-    // }
-    // for (unsigned int i=0;i<hm.cap;i++)
-    //     {
-                 
-    //         Node* old = hm.buckets[i];
-    //         if (old == nullptr)
-    //         {
-    //             buckets[i] = nullptr;
-    //         }       
-    //         else
-    //         {
-                
-    //             Node* copy = new Node{old->key,old->value,nullptr};
-    //             while (old !=nullptr)
-    //             {
-                    
-    //                 copy->next = old->next;
-    //                 old = old->next;
-    //                 // copy = copy->next;
-    //             }
-                
-    //         }
             
-    //     }
+            
+            Node* old = hm.buckets[i];
+            while (old!=nullptr)
+            {
+                this->add(old->key,old->value);
+                this->sz-=1;
+                old = old->next;
+            }
+            
+
+            // Node* old = hm.buckets[i];
+            // if (old == nullptr)
+            // {
+            //     buckets[i] = nullptr;
+            // }       
+            // else
+            // {
+                
+            //     Node* copy = new Node{old->key,old->value,nullptr};
+            //     while (old !=nullptr)
+            //     {
+            //         // copy->next = old->next;
+            //         // old = old->next;
+                    
+            //         // copy = copy->next;
+            //     }
+            //     buckets[i] = copy;
+                
+            // }
+            
+
+
+            
+        }
     
     
 }
@@ -113,24 +124,24 @@ HashMap::HashMap(const HashMap& hm)
 HashMap::~HashMap()
 {
     
-    // for (unsigned int i=0; i<cap;++i)
-    // {
-    //     if (buckets[i]!= nullptr)
-    //     {
-    //         Node* head = buckets[i];
-    //         Node* current = head;
-    //         Node* ll = current;
-    //         while(ll != nullptr)
-    //         {
-    //             ll = current->next;                
-    //             delete current;
-    //             current = ll;
-    //         } 
-    //         buckets[i] = nullptr;
-    //     }
+    for (unsigned int i=0; i<cap;++i)
+    {
+        if (buckets[i]!= nullptr)
+        {
+            Node* head = buckets[i];
+            Node* current = head;
+            Node* ll = current;
+            while(ll != nullptr)
+            {
+                ll = current->next;                
+                delete current;
+                current = ll;
+            } 
+            buckets[i] = nullptr;
+        }
         
-    // }
-    // delete[] buckets;
+    }
+    delete[] buckets;
 }
 
 
@@ -156,27 +167,12 @@ for (unsigned int i=0; i<cap;++i)
 HashMap& HashMap::operator=(const HashMap& hm)
 {
     if (this != &hm)
-    {
-        Node** new_buckets = new Node*[hm.cap];
-        for (unsigned int i=0; i<hm.cap; ++i)
-        {
-            new_buckets[i] = hm.buckets[i];
-        }
-        // (*this).~HashMap();
+    {      
+        
+        (*this).~HashMap();
         sz = hm.sz;
         cap = hm.cap; 
         hashFunction = hm.hashFunction; 
-
-
-
-
-    
-        
-
-
-
-
-
 
         buckets = new_buckets;
     }

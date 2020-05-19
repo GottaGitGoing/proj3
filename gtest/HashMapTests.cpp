@@ -135,6 +135,32 @@
 
 // }
 
+// TEST (HashMapTests, CopyCons)
+// {
+//     HashMap hm;
+//     hm.add("Boo", "perfect");
+//     hm.add("Eric", "Cartman");
+//     hm.add("Stan", "Marsh");
+//     hm.add("Randy", "Marsh");
+//     hm.add("Butters", "Stotch");
+//     hm.add("Kenny", "Something");
+//     hm.add("Alex", "Thortnton");
+//     hm.add("Rich", "Pattis");
+//     hm.add("CPP", "Hard");
+//     hm.add("Rick", "Sanchez");
+//     ASSERT_EQ(10,hm.size());
+//     HashMap hm2 = hm;
+//     ASSERT_TRUE(hm2.contains("Stan"));
+//     ASSERT_TRUE(hm2.contains("Eric"));
+//     ASSERT_TRUE(hm2.contains("Boo"));
+//     ASSERT_TRUE(hm2.contains("Randy"));
+//     ASSERT_TRUE(hm2.contains("Butters"));
+//     ASSERT_TRUE(hm2.contains("Kenny"));
+//     ASSERT_TRUE(hm2.contains("Alex"));
+//     ASSERT_TRUE(hm2.contains("Rich"));
+//     ASSERT_TRUE(hm2.contains("CPP"));
+//     ASSERT_TRUE(hm2.contains("Rick"));
+// }
 
 // TEST(HashMapTests, TestCopyCons)
 // {
@@ -158,13 +184,6 @@
 //    ASSERT_EQ("punk", hm.value("daft"));
 //    ASSERT_EQ("", hm.value("NON_EXISTENT_KEY2"));
 //    ASSERT_EQ(6,hm.size());
-//    // hm.remove("Boo");
-//    // ASSERT_FALSE(hm.remove("asdf"));
-//    // ASSERT_FALSE(hm.contains("Boo"));
-//    // ASSERT_EQ(5,hm.size());
-//    // hm.remove("dj");
-//    // ASSERT_TRUE(hm.contains("Bool"));
-//    // ASSERT_EQ(4,hm.size());
 
 //    hm.add("Eric", "Cartman");
 //    hm.add("Linkin Park", "New Divide");
@@ -219,25 +238,27 @@
 // }
 
 
-// TEST(HashMapTests,  TestAssignmentCopy)
-// {
-//     HashMap hm, hm2;
-//     hm.add("arian", "123");
-//     hm.add("gar", "345");
-//     hm.add("terry", "678");
+TEST(HashMapTests,  TestAssignmentCopy)
+{
+    HashMap hm, hm2;
+    hm.add("arian", "123");
+    hm.add("gar", "345");
+    hm.add("terry", "678");
+    
+    
 
-//     hm2 = hm;
-//     ASSERT_EQ(3, hm2.size());
-//     ASSERT_TRUE(hm2.contains("arian"));
-//     ASSERT_TRUE(hm2.contains("gar"));
-//     ASSERT_TRUE(hm2.contains("terry"));
-//     hm2.add("France", "Paris");
-//     ASSERT_TRUE(hm2.contains("France"));
-//     ASSERT_EQ("Paris",hm2.value("France"));
-//     ASSERT_EQ(4,hm2.size());
-//     ASSERT_EQ(3,hm.size());
+    hm2 = hm;
+    ASSERT_EQ(3, hm2.size());
+    ASSERT_TRUE(hm2.contains("arian"));
+    ASSERT_TRUE(hm2.contains("gar"));
+    ASSERT_TRUE(hm2.contains("terry"));
+    hm2.add("France", "Paris");
+    ASSERT_TRUE(hm2.contains("France"));
+    ASSERT_EQ("Paris",hm2.value("France"));
+    ASSERT_EQ(4,hm2.size());
+    ASSERT_EQ(3,hm.size());
 
-// }
+}
 
 
 
